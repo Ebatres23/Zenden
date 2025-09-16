@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Gentle Guide to Letting Go — Breathe, Sail, Live</title>
+<style>
+:root{
+  --bg:#0f1220; --ink:#e9ecff; --muted:#aab4da; --card:#141936; --line:rgba(255,255,255,.12);
+  --accent:#7aa2ff; --accent2:#71f0a8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color:var(--ink);
+  background:radial-gradient(1200px 600px at 20% -10%, #1a2046 0%, transparent 70%),
+             radial-gradient(1200px 800px at 120% 20%, #14204b 0%, transparent 60%), var(--bg);
+  line-height:1.6;
+}
+header{text-align:center;padding:40px 16px 20px}
+h1{margin:0;font-size:clamp(28px,6vw,46px)}
+.lede{color:var(--muted);max-width:800px;margin:10px auto}
+.wrap{max-width:950px;margin:0 auto 60px;padding:0 16px}
+.card{background:rgba(255,255,255,.04);border:1px solid var(--line);
+      border-radius:14px;padding:18px;margin:20px 0;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+h2{margin:24px 0 12px;font-size:22px}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.center{text-align:center}
+.btn{background:linear-gradient(180deg,#2a3b8f,#27347a);color:white;padding:8px 12px;
+     border-radius:10px;border:1px solid rgba(255,255,255,.15);cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:var(--ink)}
+/* breathing pacer */
+.pacerWrap{display:flex;justify-content:center;margin:20px 0}
+.pacer{width:120px;height:120px;border-radius:50%;border:1px solid var(--line);
+       display:flex;align-items:center;justify-content:center;animation:pulse 8s ease-in-out infinite}
+.pacerDot{width:12px;height:12px;border-radius:50%;background:var(--accent2)}
+@keyframes pulse{0%{transform:scale(0.9)}50%{transform:scale(1.1)}100%{transform:scale(0.9)}}
+/* sail metaphor */
+.sailBox{position:relative;height:220px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:12px}
+.sea{position:absolute;bottom:0;left:0;right:0;height:50%;background:#13244a}
+.boat{position:absolute;bottom:40%;left:50%;transform:translateX(-50%)}
+.hull{width:80px;height:20px;background:#3a4e7a;border-radius:0 0 12px 12px}
+.mast{width:3px;height:70px;background:#eee;margin:0 auto}
+.sail{width:0;height:0;border-left:50px solid rgba(255,255,255,.85);border-top:40px solid transparent}
+</style>
+</head>
+<body>
+<header>
+  <h1>A Gentle Guide to Letting Go</h1>
+  <p class="lede">If this found you, treat it as a kind arrival. You are not broken. Anxiety doesn’t mean something is wrong with you — it means your mind cares. Here’s how to care wisely without giving up on what matters.</p>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <h2>The Backwards Law</h2>
+    <p>The more we cling to calm, confidence, or success, the more they slip away. <strong>The turn:</strong> stop fighting the river. Attend to what is yours — your breath, posture, and next small step. Let the rest flow.</p>
+  </div>
+
+  <div class="card">
+    <h2>Breathing Exercise</h2>
+    <p class="muted">Breathe with the circle: inhale as it expands, exhale as it shrinks. Let your body ride the wave instead of resisting it.</p>
+    <div class="pacerWrap"><div class="pacer"><div class="pacerDot"></div></div></div>
+  </div>
+
+  <div class="card">
+    <h2>The Sail Metaphor</h2>
+    <p>Anxiety is wind. Not good, not bad. If you fight it, you drift. If you angle your sail, it moves you forward.</p>
+    <div class="sailBox">
+      <div class="sea"></div>
+      <div class="boat">
+        <div class="hull"></div>
+        <div class="mast"></div>
+        <div class="sail"></div>
+      </div>
+    </div>
+    <p class="small muted center">Use your anxiety as wind for your sail — let it propel you, not sink you.</p>
+  </div>
+
+  <div class="card">
+    <h2>Daily Anchors</h2>
+    <ul>
+      <li><strong>Morning:</strong> One line: “Today I care about… and I can do… first.”</li>
+      <li><strong>Midday:</strong> 60 seconds with the circle. Ask: “What’s mine right now?”</li>
+      <li><strong>Evening:</strong> Two lines: “A moment I allowed was…” “A small thing I did anyway was…”</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Gentle Truths</h2>
+    <p>• Anxiety means you care — it can be wind for your sail.<br>
+       • Letting go isn’t laziness, it’s precision: effort where it matters.<br>
+       • Feelings are weather. Behaviors have handles.<br>
+       • Struggle doesn’t prove you’re broken; it proves you’re human.</p>
+  </div>
+
+  <p class="center muted small">If this page soothed you, pass it on. It might arrive for someone else right when they need it.</p>
+</div>
+</body>
+</html>
