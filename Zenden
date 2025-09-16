@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Gentle Guide to Letting Go — Breathe, Sail, Live</title>
+<style>
+:root{
+  --bg:#0f1220; --ink:#e9ecff; --muted:#aab4da; --card:#141936; --line:rgba(255,255,255,.12);
+  --accent:#7aa2ff; --accent2:#71f0a8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color:var(--ink);
+  background:radial-gradient(1200px 600px at 20% -10%, #1a2046 0%, transparent 70%),
+             radial-gradient(1200px 800px at 120% 20%, #14204b 0%, transparent 60%), var(--bg);
+  line-height:1.6;
+}
+header{text-align:center;padding:40px 16px 20px}
+h1{margin:0;font-size:clamp(28px,6vw,46px)}
+.lede{color:var(--muted);max-width:800px;margin:10px auto}
+.wrap{max-width:950px;margin:0 auto 60px;padding:0 16px}
+.card{background:rgba(255,255,255,.04);border:1px solid var(--line);
+      border-radius:14px;padding:18px;margin:20px 0;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+h2{margin:24px 0 12px;font-size:22px}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.center{text-align:center}
+.btn{background:linear-gradient(180deg,#2a3b8f,#27347a);color:white;padding:8px 12px;
+     border-radius:10px;border:1px solid rgba(255,255,255,.15);cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:var(--ink)}
+/* breathing pacer */
+.pacerWrap{display:flex;justify-content:center;margin:20px 0}
+.pacer{width:120px;height:120px;border-radius:50%;border:1px solid var(--line);
+       display:flex;align-items:center;justify-content:center;animation:pulse 8s ease-in-out infinite}
+.pacerDot{width:12px;height:12px;border-radius:50%;background:var(--accent2)}
+@keyframes pulse{0%{transform:scale(0.9)}50%{transform:scale(1.1)}100%{transform:scale(0.9)}}
+/* sail metaphor */
+.sailBox{position:relative;height:220px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:12px}
+.sea{position:absolute;bottom:0;left:0;right:0;height:50%;background:#13244a}
+.boat{position:absolute;bottom:40%;left:50%;transform:translateX(-50%)}
+.hull{width:80px;height:20px;background:#3a4e7a;border-radius:0 0 12px 12px}
+.mast{width:3px;height:70px;background:#eee;margin:0 auto}
+.sail{width:0;height:0;border-left:50px solid rgba(255,255,255,.85);border-top:40px solid transparent}
+</style>
+</head>
+<body>
+<header>
+  <h1>A Gentle Guide to Letting Go</h1>
+  <p class="lede">If this found you, treat it as a kind arrival. You are not broken. Anxiety doesn’t mean something is wrong with you — it means your mind cares. Here’s how to care wisely without giving up on what matters.</p>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <h2>The Backwards Law</h2>
+    <p>The more we cling to calm, confidence, or success, the more they slip away. <strong>The turn:</strong> stop fighting the river. Attend to what is yours — your breath, posture, and next small step. Let the rest flow.</p>
+  </div>
+
+  <div class="card">
+    <h2>Breathing Exercise</h2>
+    <p class="muted">Breathe with the circle: inhale as it expands, exhale as it shrinks. Let your body ride the wave instead of resisting it.</p>
+    <div class="pacerWrap"><div class="pacer"><div class="pacerDot"></div></div></div>
+  </div>
+
+  <div class="card">
+    <h2>The Sail Metaphor</h2>
+    <p>Anxiety is wind. Not good, not bad. If you fight it, you drift. If you angle your sail, it moves you forward.</p>
+    <div class="sailBox">
+      <div class="sea"></div>
+      <div class="boat">
+        <div class="hull"></div>
+        <div class="mast"></div>
+        <div class="sail"></div>
+      </div>
+    </div>
+    <p class="small muted center">Use your anxiety as wind for your sail — let it propel you, not sink you.</p>
+  </div>
+
+  <div class="card">
+    <h2>Daily Anchors</h2>
+    <ul>
+      <li><strong>Morning:</strong> One line: “Today I care about… and I can do… first.”</li>
+      <li><strong>Midday:</strong> 60 seconds with the circle. Ask: “What’s mine right now?”</li>
+      <li><strong>Evening:</strong> Two lines: “A moment I allowed was…” “A small thing I did anyway was…”</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Gentle Truths</h2>
+    <p>• Anxiety means you care — it can be wind for your sail.<br>
+       • Letting go isn’t laziness, it’s precision: effort where it matters.<br>
+       • Feelings are weather. Behaviors have handles.<br>
+       • Struggle doesn’t prove you’re broken; it proves you’re human.</p>
+  </div>
+
+  <p class="center muted small">If this page soothed you, pass it on. It might arrive for someone else right when they need it.</p>
+</div>
+</body>
+<html># app.py — Gentle Guide + Animated Breathing + Sail Metaphor + Daily Anchors
+# Runs locally:  python app.py  -> http://localhost:8000
+# Heroku-ready (see steps below)
+
+from flask import Flask, Response
+import os
+
+app = Flask(__name__)
+
+HTML = r"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Gentle Guide to Letting Go — Breathe, Sail, Live</title>
+<style>
+:root{
+  --bg:#0f1220; --ink:#e9ecff; --muted:#aab4da; --card:#141936; --line:rgba(255,255,255,.12);
+  --accent:#7aa2ff; --accent2:#71f0a8; --warm:#ffd08a; --rose:#ff9aa2;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 600px at 20% -10%, #1a2046 0%, transparent 70%),
+    radial-gradient(1200px 800px at 120% 20%, #14204b 0%, transparent 60%),
+    var(--bg);
+  line-height:1.6;
+}
+header{padding:56px 18px 12px; text-align:center}
+h1{margin:0; font-size:clamp(28px,6vw,48px); letter-spacing:.4px}
+.lede{margin:10px auto 0; max-width:860px; color:var(--muted); font-size:clamp(16px,2.6vw,20px)}
+.wrap{max-width:1000px; margin:18px auto 100px; padding:0 18px}
+hr{border:0; height:1px; background:var(--line); margin:28px 0}
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid var(--line); border-radius:16px; padding:18px;
+  box-shadow:0 8px 24px rgba(0,0,0,.25); backdrop-filter: blur(6px);
+}
+h2{margin:24px 0 10px; font-size:24px}
+h3{margin:16px 0 6px; font-size:18px}
+p{margin:12px 0}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.center{text-align:center}
+.grid{display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(260px,1fr))}
+.kicker{color:var(--accent2); font-weight:700}
+.tag{display:inline-block; font-size:12px; color:var(--accent); background:rgba(122,162,255,.1); border:1px solid rgba(122,162,255,.35); padding:4px 10px; border-radius:999px}
+blockquote{
+  margin:14px 0; padding:12px 14px; border-left:4px solid var(--accent);
+  background:rgba(122,162,255,.08); border-radius:6px;
+}
+.controls{display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap; margin:12px 0 8px}
+.btn{
+  appearance:none; border:none; background:linear-gradient(180deg,#2a3b8f,#27347a);
+  color:#fff; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600;
+  border:1px solid rgba(255,255,255,.15)
+}
+.btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.25); color:var(--ink)}
+
+/* Breathing lab */
+.lab{display:grid; gap:16px; grid-template-columns: 1fr; }
+@media(min-width:900px){ .lab{grid-template-columns: 1.2fr 1fr;} }
+
+.pacerWrap{display:flex; justify-content:center; align-items:center; margin:6px 0 2px}
+.pacer{
+  width:150px; height:150px; border-radius:999px; border:1px solid var(--line);
+  display:flex; justify-content:center; align-items:center; position:relative;
+  box-shadow:0 0 0 0 rgba(113,240,168,.25);
+}
+.pacerDot{width:14px; height:14px; border-radius:999px; background:var(--accent2)}
+.pacerGuide{margin-top:8px; text-align:center; color:var(--muted)}
+.modeRow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:center; margin:8px 0}
+.kv{display:flex; gap:8px; align-items:center; justify-content:center; flex-wrap:wrap}
+.kv span{border:1px solid var(--line); padding:4px 8px; border-radius:999px; font-size:12px}
+
+.slider{width:100%}
+
+/* Sail metaphor */
+.sailBox{position:relative; height:260px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00))}
+.sea{position:absolute; left:-20%; right:-20%; bottom:0; height:45%; background:linear-gradient(180deg,#17274d,#0d1a3a); transform:translateY(0); overflow:hidden}
+.wave{position:absolute; left:0; right:0; height:70%; top:30%; background:radial-gradient(200px 40px at 0% 50%, rgba(255,255,255,.12), transparent 60%);
+  animation: drift 8s linear infinite; opacity:.4}
+.wave2{animation-duration:11s; opacity:.25}
+@keyframes drift{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+.boat{position:absolute; left:50%; bottom:38%; transform:translateX(-50%) rotate(0deg); transition: transform .6s ease}
+.hull{width:100px; height:26px; background:#3a4e7a; border-radius:0 0 16px 16px; border:1px solid rgba(255,255,255,.2)}
+.mast{position:absolute; left:50%; bottom:26px; width:4px; height:90px; background:rgba(255,255,255,.7); transform:translateX(-50%)}
+.sail{position:absolute; left:50%; bottom:26px; width:0; height:0; border-left:70px solid rgba(255,255,255,.85); border-top:60px solid transparent; transform-origin:left bottom; transform:rotate(0deg); transition: transform .6s ease}
+
+/* Reveal */
+.reveal{opacity:.001; transform:translateY(6px); transition:opacity .7s ease, transform .7s ease}
+.reveal.show{opacity:1; transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>A Gentle Guide to Letting Go</h1>
+  <p class="lede">If this found you, treat it as a kind arrival. You’re not broken. Anxiety doesn’t mean something is wrong with you — it means your mind cares. This page offers a calm way to care wisely, without giving up on what matters.</p>
+</header>
+
+<div class="wrap">
+
+  <!-- Core letter -->
+  <div class="card reveal">
+    <span class="tag">read me once, keep what helps</span>
+    <p>The Backwards Law is simple: the more we cling to a feeling or outcome, the more it slips away. Desperately seeking calm creates tension. Trying to look confident makes us self-conscious. Scrambling for control exposes how little control we have.</p>
+    <p class="kicker">The turn is gentle: stop fighting the river. Attend to what is yours — your breath, posture, and the next small step. Let the rest flow.</p>
+    <blockquote>Across time, this same shape keeps appearing: less grasping → clearer seeing → wiser action → steadier peace. Steadiness avoids the expensive mistakes of panic. Over time, that looks like prosperity.</blockquote>
+  </div>
+
+  <!-- Breathing Lab -->
+  <h2 class="reveal">Breathe: calm the second arrow</h2>
+  <div class="lab">
+    <div class="card reveal">
+      <p>Anxiety is arousal — the body preparing for importance. The “second arrow” is the thought, “I shouldn’t feel this.” This little lab helps you let a wave crest and fall so your attention returns to what you can do.</p>
+      <div class="modeRow">
+        <button class="btn" onclick="setMode('box')">Box 4-4-4-4</button>
+        <button class="btn" onclick="setMode('res')">Resonance ~5.5s</button>
+        <button class="btn" onclick="setMode('478')">4-7-8</button>
+        <button class="btn ghost" onclick="toggleChime()">chime: <span id="chimeState">off</span></button>
+      </div>
+      <div class="pacerWrap">
+        <div class="pacer" id="pacer"><div class="pacerDot"></div></div>
+      </div>
+      <div class="pacerGuide" id="guide">Inhale… 4 3 2 1</div>
+      <div class="kv"><span id="phasePill">phase: inhale</span><span id="tempoPill">tempo: 4s</span></div>
+    </div>
+
+    <!-- Sail metaphor -->
+    <div class="card reveal">
+      <h3>Use the wind: the sail metaphor</h3>
+      <p>Don’t fight anxiety — set your sail to it. Wind isn’t “good” or “bad.” With the right angle, it moves you. Slide the wind to feel how attention (sail angle) turns anxiety into motion.</p>
+      <input id="wind" class="slider" type="range" min="0" max="10" step="1" value="4" oninput="sail()">
+      <div class="sailBox" aria-hidden="true">
+        <div class="sea"><div class="wave"></div><div class="wave wave2"></div></div>
+        <div id="boat" class="boat">
+          <div class="hull"></div>
+          <div class="mast"></div>
+          <div id="sail" class="sail"></div>
+        </div>
+      </div>
+      <p class="small muted">Tip: low wind = set sail more open; high wind = trim the sail (narrower angle), aim for steady progress not drama.</p>
+    </div>
+  </div>
+
+  <!-- Cross-cultural & modern frame -->
+  <h2 class="reveal">Why this works (timeless + modern)</h2>
+  <div class="grid">
+    <div class="card reveal"><h3>Stoicism</h3><p class="muted">Invest in choices & virtues; accept outcomes & opinions.</p></div>
+    <div class="card reveal"><h3>Taoism — wú-wéi</h3><p class="muted">Non-forcing: act with the grain of reality; less splash, more speed.</p></div>
+    <div class="card reveal"><h3>Zen / Chan</h3><p class="muted">Drop the performer; return to this breath, this step, this keystroke.</p></div>
+    <div class="card reveal"><h3>Buddhist insight</h3><p class="muted">Clinging multiplies suffering; allowing reduces the second arrow.</p></div>
+    <div class="card reveal"><h3>Bhagavad Gītā</h3><p class="muted">Right to action, not its fruits. Do well; release fixation.</p></div>
+    <div class="card reveal"><h3>Sabr & Tawakkul</h3><p class="muted">Steadiness + trust after sincere effort = ego relaxes its grip.</p></div>
+    <div class="card reveal"><h3>Modern psychology</h3><p class="muted">Acceptance (allow), exposure (approach in small doses), and process focus (clear cues) restore attention and momentum.</p></div>
+  </div>
+
+  <!-- Daily anchors (no-homework, lived-in) -->
+  <h2 class="reveal">Daily anchors (no homework — gentle defaults)</h2>
+  <div class="grid">
+    <div class="card reveal">
+      <h3>Morning: point the bow</h3>
+      <p><strong>One line</strong> to aim the day: “Today I care about … and I can do … first.” Feelings are weather; behaviors have handles.</p>
+    </div>
+    <div class="card reveal">
+      <h3>Midday: sail trim</h3>
+      <p>60 seconds with the pacer. Ask: “What’s mine right now?” Do the smallest helpful part of it. Outcomes can be late.</p>
+    </div>
+    <div class="card reveal">
+      <h3>Evening: harbor lights</h3>
+      <p>Two lines: “A moment I allowed instead of fought was …” “A small thing I did anyway was …” Let momentum, not perfection, tuck you in.</p>
+    </div>
+    <div class="card reveal">
+      <h3>Moments that matter</h3>
+      <p><strong>Before a call:</strong> slow exhale, shoulders soft, first sentence slow.<br>
+         <strong>With a loved one:</strong> ask, mirror, summarize — presence over fixing.<br>
+         <strong>When stuck:</strong> open the file, write one ugly line.</p>
+    </div>
+  </div>
+
+  <!-- Soft truths -->
+  <h2 class="reveal">Soft truths that free you</h2>
+  <div class="card reveal">
+    <p>• What you call friendship may be a habit of impressing. Presence beats performance.</p>
+    <p>• Much of your stress is caring about things that don’t matter. Choose fewer, deeper cares.</p>
+    <p>• Anxiety doesn’t disqualify you; it points to meaning. Meet it, steer with it.</p>
+    <p>• Letting go isn’t laziness; it’s precision. You’re choosing where effort changes reality.</p>
+  </div>
+
+  <div class="center muted small reveal">This page is made to be shared. If it helped, pass it on. Words are original restatements of widely taught ideas.</div>
+</div>
+
+<script>
+/* ---------- Reveal on view ---------- */
+const obs=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ---------- Breathing lab ---------- */
+let mode = 'box';
+let phase = 'inhale';
+let t = 0;
+let phaseDur = 4;
+let hold1=4, hold2=4, ex=4, inb=4; // defaults for box
+let chime = false;
+const guide = document.getElementById('guide');
+const phasePill = document.getElementById('phasePill');
+const tempoPill = document.getElementById('tempoPill');
+const pacer = document.getElementById('pacer');
+
+function setMode(m){
+  mode = m;
+  if(m==='box'){ inb=4; hold1=4; ex=4; hold2=4; }
+  if(m==='res'){ inb=5.5; hold1=0; ex=5.5; hold2=0; }
+  if(m==='478'){ inb=4; hold1=7; ex=8; hold2=0; }
+  t = 0; phase='inhale'; updateGuide(inb);
+  pacer.style.animation = 'pulse '+((inb+hold1+ex+hold2)||8)+'s ease-in-out infinite';
+}
+function toggleChime(){ chime=!chime; document.getElementById('chimeState').textContent = chime? 'on':'off'; try{ if(chime) new Audio(BEEP).play(); }catch(e){} }
+
+function updateGuide(rem){
+  phasePill.textContent = 'phase: '+phase;
+  tempoPill.textContent = 'tempo: ' + Math.round(rem) + 's';
+  const count = Math.ceil(rem);
+  let text = (phase==='inhale'?'Inhale… ':'Hold… ');
+  if(phase==='exhale') text = 'Exhale… ';
+  guide.textContent = text + (count? count+'s':'');
+  // subtle scale to “breathe”
+  const scale = phase==='inhale'? 1.12 : (phase==='exhale'? 0.9 : 1.0);
+  pacer.style.transform = 'scale('+scale+')';
+}
+
+let lastTs = null;
+function loop(ts){
+  if(!lastTs) lastTs=ts;
+  const dt = (ts-lastTs)/1000; lastTs=ts;
+  t += dt;
+  let dur = (phase==='inhale'? inb : phase==='hold1'? hold1 : phase==='exhale'? ex : hold2);
+  if(dur<=0){ // skip zero phases
+    nextPhase();
+  } else {
+    const rem = Math.max(0, dur - (t % dur));
+    updateGuide(rem);
+    if(rem<=0.02){ if(chime){ try{ new Audio(BEEP).play(); }catch(e){} } nextPhase(); }
+  }
+  requestAnimationFrame(loop);
+}
+function nextPhase(){
+  t = 0;
+  if(phase==='inhale') phase = (hold1>0)? 'hold1':'exhale';
+  else if(phase==='hold1') phase='exhale';
+  else if(phase==='exhale') phase = (hold2>0)? 'hold2':'inhale';
+  else phase='inhale';
+}
+setMode('res'); requestAnimationFrame(loop);
+
+/* ---------- Sail metaphor ---------- */
+function sail(){
+  const wind = parseInt(document.getElementById('wind').value,10); // 0..10
+  const sailEl = document.getElementById('sail');
+  const boat = document.getElementById('boat');
+  // more wind -> trim sail (smaller angle), boat heels slightly but moves forward
+  const sailAngle = 30 - (wind*2); // from ~30° down to ~10°
+  const heel = (wind*1.2); // tilt boat a bit with wind
+  sailEl.style.transform = 'rotate('+(-sailAngle)+'deg)';
+  boat.style.transform = 'translateX(-50%) rotate('+(-heel/8)+'deg)';
+}
+sail();
+
+/* ---------- Tiny chime (inline data URI) ---------- */
+const BEEP = "data:audio/wav;base64,UklGRjQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABYAZGF0YQAAAAA=";
+</script>
+
+</body>
+</html>
+"""
+
+@app.route("/")
+def index():
+    return Response(HTML, mimetype="text/html; charset=utf-8")
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host="0.0.0.0", port=port)</html>
